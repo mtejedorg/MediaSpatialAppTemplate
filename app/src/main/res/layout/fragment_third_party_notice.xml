@@ -23,5 +23,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:elevation="4dp"
+        android:contentDescription="@string/third_party_notice_back_button_content_description"
         />
 </FrameLayout>

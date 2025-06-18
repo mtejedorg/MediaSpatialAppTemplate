@@ -8,4 +8,8 @@
         name="video_back_button_content_description"
         description="Accessibility text announced when the back button is focused, indicating that pressing it will return to the previous screen"
         >Back to previous screen</string>
+    <string
+        name="third_party_notice_back_button_content_description"
+        description="Accessibility text announced when the back button in third party notice screen is focused, indicating that pressing it will return to the previous screen"
+        >Back to previous screen from third party notices</string>
 </resources>
