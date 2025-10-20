@@ -1,4 +1,4 @@
-/* // (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
+ // (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
 
 package com.meta.media.template
 
@@ -83,4 +83,3 @@ class ImmersiveActivity : AppSystemActivity() {
     )
   }
 }
- */

@@ -6,6 +6,9 @@
 plugins {
   id("com.android.application")
   id("org.jetbrains.kotlin.android")
+
+  id("com.google.devtools.ksp")
+  id("com.meta.spatial.plugin")
 }
 
 android {
@@ -34,7 +37,16 @@ android {
     targetCompatibility = JavaVersion.VERSION_17
   }
   kotlinOptions { jvmTarget = "17" }
+
+  buildFeatures { buildConfig = true }
+  flavorDimensions += "device"
+  productFlavors {
+    create("mobile") { dimension = "device" }
+    create("quest") { dimension = "device" }
+  }
 }
+
+val metaSpatialSdkVersion = "0.8.0"
 
 dependencies {
   implementation("androidx.core:core-ktx:1.9.0")
@@ -52,4 +64,24 @@ dependencies {
   testImplementation("junit:junit:4.13.2")
   androidTestImplementation("androidx.test.ext:junit:1.1.5")
   androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+  implementation("com.meta.spatial:meta-spatial-sdk:$metaSpatialSdkVersion")
+  implementation("com.meta.spatial:meta-spatial-sdk-toolkit:$metaSpatialSdkVersion")
+  implementation("com.meta.spatial:meta-spatial-sdk-vr:$metaSpatialSdkVersion")
+  implementation("com.meta.spatial:meta-spatial-sdk-physics:$metaSpatialSdkVersion")
+  ksp("com.meta.spatial.plugin:com.meta.spatial.plugin.gradle.plugin:0.8.0")
+}
+
+val projectDir = layout.projectDirectory
+val sceneDirectory = projectDir.dir("spatial_editor/MediaApp")
+spatial {
+  allowUsageDataCollection = true
+  scenes {
+    exportItems {
+      item {
+        projectPath.set(sceneDirectory.file("Main.metaspatial"))
+        outputPath.set(projectDir.dir("src/quest/assets/scenes"))
+      }
+    }
+  }
 }
